@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade 8 Outputs</title>
+<meta name="description" content="Grade 8 App Creators: every session output and project, Semester 1 (FlutterFlow) and Semester 2 (Dart & Flutter).">
+<style>
+@font-face{font-family:"Somar Rounded";src:url(assets/fonts/SomarRounded-Regular.ttf) format("truetype");font-weight:400;font-display:swap}
+@font-face{font-family:"Somar Rounded";src:url(assets/fonts/SomarRounded-Medium.ttf) format("truetype");font-weight:500;font-display:swap}
+@font-face{font-family:"Somar Rounded";src:url(assets/fonts/SomarRounded-SemiBold.ttf) format("truetype");font-weight:600;font-display:swap}
+@font-face{font-family:"Somar Rounded";src:url(assets/fonts/SomarRounded-Bold.ttf) format("truetype");font-weight:700;font-display:swap}
+
+/* tokens copied from the iSchool K12 roadmap */
+:root{
+  --radius:1rem;
+  --background:#fff; --foreground:#162147; --card:#fff;
+  --primary:#0075f0; --primary-soft:#e6f3fa; --secondary:#d2ecff; --secondary-foreground:#002968;
+  --muted:#ebf7ff; --muted-foreground:#597587;
+  --accent:#f7791a; --accent-soft:#ffefe3;
+  --border:#e6edf1; --orange-50:#fff7ed; --orange-200:#ffd7a8; --orange-500:#fe6e00; --slate-600:#45556c;
+  --shadow-soft:0 1px 2px #08152c0a,0 8px 24px -12px #08152c14;
+  --shadow-pop:0 4px 12px -2px #08152c14,0 20px 40px -16px #08152c1f;
+  --bounce:all .3s cubic-bezier(.34,1.4,.64,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--background);color:var(--foreground);font-family:"Somar Rounded",system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{text-transform:capitalize}
+.container{max-width:80rem;margin:0 auto;padding:0 16px}
+@media(min-width:640px){.container{padding:0 24px}}
+main{background:linear-gradient(to bottom,#E2F8FF 0px,#E2F8FF 480px,var(--background) 900px)}
+
+/* header */
+header.site{padding:0}
+@media(min-width:640px){header.site{padding:16px 24px 0}}
+.bar{max-width:80rem;margin:0 auto;background:#fffffff2;backdrop-filter:blur(8px);border:1px solid #E6EDF1;border-left:0;border-right:0;padding:12px 16px;display:flex;align-items:center;gap:16px;box-shadow:0 1px 2px #0000000d}
+@media(min-width:640px){.bar{border-radius:999px;border-left:1px solid #E6EDF1;border-right:1px solid #E6EDF1;padding:12px 32px}}
+.bar .logo img{height:32px;width:auto}
+@media(min-width:768px){.bar .logo img{height:36px}}
+.bar nav{flex:1;display:none;justify-content:center;gap:4px}
+@media(min-width:1024px){.bar nav{display:flex}}
+.bar nav a{font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;color:var(--foreground)}
+.bar nav a:hover{color:var(--primary)}
+.bar nav a.active{color:var(--primary);background:#0075f00d}
+.bar .right{margin-inline-start:auto;display:flex;gap:20px}
+.bar .right a{color:var(--primary);font-weight:600;font-size:14px}
+.bar .right a:hover{opacity:.8}
+
+.grade-title{display:flex;justify-content:center;text-align:center;padding:24px 0 0}
+@media(min-width:640px){.grade-title{padding-top:32px}}
+.grade-title h1{margin:0;display:inline-flex;flex-wrap:wrap;gap:4px 12px;align-items:center;justify-content:center;font-size:22px;font-weight:600;letter-spacing:-.025em}
+@media(min-width:640px){.grade-title h1{font-size:28px}}
+@media(min-width:768px){.grade-title h1{font-size:34px}}
+.grade-title .bar-sep{color:#59758799;font-weight:300}
+
+/* hero */
+.hero{padding:24px 0 64px}
+@media(min-width:640px){.hero{padding:40px 0 80px}}
+@media(min-width:768px){.hero{padding:72px 0 112px}}
+.hero-grid{display:grid;gap:40px;align-items:start}
+@media(min-width:1024px){.hero-grid{grid-template-columns:1.35fr 1fr;gap:64px}}
+.hero-copy{text-align:center;margin-top:12px}
+@media(min-width:1024px){.hero-copy{text-align:start;margin-top:0}}
+.pill-orange{display:block;width:fit-content;background:var(--orange-50);color:var(--orange-500);border:1px solid var(--orange-200);border-radius:999px;padding:4px 16px;font-size:14px;font-weight:500;margin:0 auto 16px}
+@media(min-width:1024px){.pill-orange{margin-inline:0}}
+.hero h2{font-weight:600;letter-spacing:-.025em;line-height:1.3;margin:0 0 24px}
+.hero h2 .l1{display:block;font-size:28px}
+.hero h2 .l2{display:block;color:var(--primary);font-size:22px;margin:4px 0}
+@media(min-width:640px){.hero h2 .l1,.hero h2 .l2{font-size:45px}.hero h2 .l2{margin:15px 0}}
+@media(min-width:1024px){.hero h2 .l1{font-size:57px}}
+.hero p.lead{font-size:16px;color:var(--slate-600);line-height:1.625;max-width:36rem;margin:0 auto 32px}
+@media(min-width:640px){.hero p.lead{font-size:18px;margin-bottom:40px}}
+@media(min-width:1024px){.hero p.lead{margin-inline:0}}
+.btns{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:20px}
+@media(min-width:1024px){.btns{justify-content:flex-start}}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 20px;font-weight:600;font-size:14px;transition:var(--bounce)}
+@media(min-width:640px){.btn{padding:14px 24px;font-size:16px}}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-pop)}
+.btn-primary:hover{opacity:.9}
+.btn-outline{background:var(--card);color:var(--primary);border:1px solid var(--secondary)}
+.btn-outline:hover{background:var(--primary-soft)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;font-size:14px;color:var(--muted-foreground)}
+@media(min-width:1024px){.meta{justify-content:flex-start}}
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.phone{width:100%;max-width:280px;aspect-ratio:3/4}
+@media(min-width:640px){.phone{max-width:320px}}
+.phone img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 25px 25px #00000026)}
+.final-badge{position:absolute;bottom:-16px;right:-8px;background:var(--accent);color:#fff;border-radius:24px;padding:12px 20px;box-shadow:var(--shadow-pop);transform:rotate(-3deg)}
+@media(min-width:768px){.final-badge{right:24px}}
+.final-badge small{display:block;font-size:14px;font-weight:600;letter-spacing:.02em;opacity:.9}
+.final-badge b{display:block;font-size:18px;font-weight:600;line-height:1.25}
+
+/* sections */
+section.band{padding:64px 0}
+@media(min-width:640px){section.band{padding:80px 0}}
+@media(min-width:768px){section.band{padding:112px 0}}
+.sec-head{text-align:center;margin-bottom:48px}
+@media(min-width:640px){.sec-head{margin-bottom:64px}}
+.eyebrow{color:var(--accent);font-weight:600;font-size:14px;letter-spacing:.02em;margin-bottom:12px}
+.sec-head h2{font-size:24px;font-weight:600;letter-spacing:-.025em;line-height:1.3;margin:0 0 20px}
+@media(min-width:640px){.sec-head h2{font-size:30px}}
+@media(min-width:768px){.sec-head h2{font-size:42px}}
+.sec-head h2 span{display:block}
+.sec-head p{font-size:18px;color:var(--muted-foreground);max-width:42rem;margin:0 auto}
+
+/* project cards (tools-card style) */
+.proj-grid{display:grid;gap:24px;grid-template-columns:1fr}
+@media(min-width:640px){.proj-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.proj-grid{grid-template-columns:repeat(3,1fr);gap:32px}}
+.proj{border-radius:28px;border:1px solid #e6edf199;background:var(--card);padding:20px;box-shadow:var(--shadow-soft);transition:all .3s;display:flex;flex-direction:column}
+@media(min-width:640px){.proj{padding:24px}}
+.proj:hover{box-shadow:var(--shadow-pop);transform:translateY(-4px)}
+.proj .media{border-radius:24px;height:208px;margin-bottom:24px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.proj .media img{max-height:86%;max-width:86%;object-fit:contain;border-radius:12px;box-shadow:var(--shadow-soft)}
+.proj .txt{padding:0 8px 8px}
+.proj h3{font-size:20px;font-weight:600;letter-spacing:-.025em;margin:0 0 6px}
+.proj p{margin:0;font-size:15px;color:var(--muted-foreground);line-height:1.625}
+.proj .when{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--primary);background:var(--primary-soft);padding:3px 10px;border-radius:999px}
+.proj .when.s2{color:#c25700;background:var(--accent-soft)}
+
+/* timeline (learning-path style) */
+.timeline{position:relative;max-width:64rem;margin:0 auto;padding:0 8px}
+@media(min-width:640px){.timeline{padding:0}}
+.timeline::before{content:"";position:absolute;top:24px;bottom:24px;width:1px;background:var(--border);left:16px}
+@media(min-width:640px){.timeline::before{left:50%;transform:translateX(-50%)}}
+.tl-items{display:flex;flex-direction:column;gap:32px}
+@media(min-width:640px){.tl-items{gap:56px}}
+.project-divider{position:relative;z-index:1;display:flex;justify-content:flex-start;padding-left:0}
+@media(min-width:640px){.project-divider{justify-content:center}}
+.project-divider span{background:var(--background);border:1px solid var(--border);border-radius:999px;padding:6px 16px;font-weight:600;font-size:14px;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow-soft)}
+.alt .project-divider span{background:#F7FAFF}
+.project-divider i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+.tl{position:relative}
+.tl .lbl{font-weight:600;font-size:14px;color:#162147cc;transition:color .15s}
+@media(min-width:640px){.tl .lbl{font-size:16px}}
+.tl:hover .lbl{color:var(--primary)}
+.tl .dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--primary);background:var(--background);transition:background .15s;flex:none}
+.tl:hover .dot,.tl.final .dot{background:var(--primary)}
+.tl.final .lbl{color:var(--primary)}
+/* mobile layout */
+.tl .m-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;position:relative;z-index:1;padding-left:8px}
+.tl .card-slot{padding-left:40px}
+.tl .d-row{display:none}
+@media(min-width:640px){
+  .tl .m-head{display:none}
+  .tl .card-slot{padding-left:0}
+  .tl .d-row{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:16px}
+  .tl .d-row .center{display:flex;justify-content:center;position:relative;z-index:1}
+  .tl .d-row .side-lbl.left{text-align:end;padding-inline-end:24px}
+  .tl .d-row .side-lbl.right{padding-inline-start:24px}
+  .tl .mob-only{display:none}
+}
+.scard{border-radius:28px;border:1px solid #e6edf199;background:var(--card);padding:16px;box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:16px;transition:all .3s}
+.scard:hover{box-shadow:var(--shadow-pop);transform:translateY(-4px)}
+@media(min-width:900px){.scard{flex-direction:row;padding:20px;gap:20px;align-items:flex-start}}
+.shot{all:unset;cursor:zoom-in;flex:none;border-radius:20px;background:#F7FAFF;display:flex;align-items:center;justify-content:center;overflow:hidden;width:100%;height:220px;position:relative}
+@media(min-width:900px){.shot{width:170px;height:200px}}
+.shot img{max-width:92%;max-height:92%;object-fit:contain;border-radius:10px}
+.shot:focus-visible{outline:2px solid var(--primary);outline-offset:3px}
+.shot img,.cap .imgs img{transition:transform .35s ease}
+.shot:hover img,.cap .imgs button:hover img{transform:scale(1.04)}
+.zoom{position:absolute;top:10px;right:10px;width:32px;height:32px;border-radius:50%;background:#fff;color:var(--primary);box-shadow:var(--shadow-soft);display:grid;place-items:center;opacity:0;transform:scale(.8);transition:all .2s}
+.zoom svg{width:16px;height:16px}
+.shot:hover .zoom,.shot:focus-visible .zoom,.cap .imgs button:hover .zoom,.cap .imgs button:focus-visible .zoom{opacity:1;transform:none}
+@media(hover:none){.zoom{opacity:1;transform:none}}
+.scard .info{min-width:0;display:flex;flex-direction:column;gap:8px}
+.ptag{display:inline-flex;align-items:center;gap:6px;width:fit-content;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+.scard h3{margin:0;font-size:18px;font-weight:600;line-height:1.35}
+@media(min-width:640px){.scard h3{font-size:20px}}
+.scard p{margin:0;font-size:14px;color:var(--muted-foreground);line-height:1.625}
+.links{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.links a{font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--primary-soft);color:var(--secondary-foreground);transition:var(--bounce)}
+.links a:hover{background:var(--primary);color:#fff}
+.links a.main{background:var(--primary);color:#fff;box-shadow:var(--shadow-soft)}
+.links a.main:hover{opacity:.9}
+.links a .lock{font-size:10px}
+
+/* graduation projects (capstone style) */
+.caps{display:grid;gap:24px}
+@media(min-width:1024px){.caps{grid-template-columns:1fr 1fr;gap:32px}}
+.cap{border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px}
+.cap.blue{background:var(--primary-soft)}
+.cap.orange{background:var(--accent-soft)}
+.cap .ey{font-size:14px;font-weight:600;color:var(--accent)}
+.cap h3{margin:0;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.cap p{margin:0;color:var(--muted-foreground);line-height:1.625}
+.cap .imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cap .imgs button{all:unset;cursor:zoom-in;position:relative;overflow:hidden;background:#fff;border-radius:20px;height:260px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-soft)}
+.cap .imgs img{max-width:90%;max-height:92%;object-fit:contain;border-radius:10px}
+.cap .links a{background:#fff}
+
+footer{border-top:1px solid var(--border);padding:32px 0 40px;color:var(--muted-foreground);font-size:14px}
+footer .row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+footer img{height:28px;width:auto}
+
+/* lightbox */
+dialog{border:none;padding:0;margin:0;inset:0;width:100%;height:100dvh;max-width:none;max-height:none;background:transparent;color:var(--foreground)}
+dialog::backdrop{background:#0b1633e6;backdrop-filter:blur(8px)}
+dialog[open]{animation:lbIn .25s ease}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lb,.lb *{box-sizing:border-box}
+.lb{height:100%;width:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr auto;gap:12px;padding:16px}
+.lb-top{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff}
+.lb-count{font-size:14px;font-weight:600;background:#ffffff1f;border-radius:999px;padding:6px 14px}
+.lb-btn{border:none;background:#ffffff1f;color:#fff;border-radius:50%;width:44px;height:44px;cursor:pointer;display:grid;place-items:center;flex:none;transition:var(--bounce)}
+.lb-btn svg{width:20px;height:20px}
+.lb-btn:hover{background:var(--primary)}
+.lb-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.lb-mid{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;min-height:0}
+.lb-stage{margin:0;height:100%;min-height:0;display:flex;align-items:center;justify-content:center}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:20px;box-shadow:0 30px 80px -20px #000a;background:#fff;animation:lbImg .3s ease}
+@keyframes lbImg{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+.lb-info{background:#fff;border-radius:28px;padding:16px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;max-width:1000px;width:100%;margin:0 auto;box-shadow:var(--shadow-pop)}
+.lb-info .txt{min-width:0;display:flex;flex-direction:column;gap:6px}
+.lb-info h3{margin:0;font-size:18px;font-weight:600;line-height:1.35}
+.lb-info p{margin:0;font-size:14px;color:var(--muted-foreground);line-height:1.5}
+.lb-info .links{margin:0}
+@media(max-width:640px){
+  .lb{padding:10px;gap:8px}
+  .lb-mid{grid-template-columns:minmax(0,1fr)}
+  .lb-mid .lb-btn{display:none}
+  .lb-info{padding:14px 16px;border-radius:20px}
+  .lb-info h3{font-size:16px}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="site">
+    <div class="bar">
+      <a class="logo" href="#top"><img src="assets/ischool-logo.png" alt="iSchool"></a>
+      <nav aria-label="Primary">
+        <a class="active" href="#top">Grade 8 Outputs</a>
+        <a href="#projects">Projects</a>
+        <a href="#semester-1">Semester 1</a>
+        <a href="#semester-2">Semester 2</a>
+        <a href="#graduation">Graduation</a>
+      </nav>
+      <div class="right"><a href="#semester-1">S1</a><a href="#semester-2">S2</a></div>
+    </div>
+  </header>
+
+  <section class="container grade-title" id="top" aria-label="Grade 8 | App Creators">
+    <h1><span style="color:var(--primary)">Grade 8</span><span class="bar-sep" aria-hidden="true">|</span><span>App Creators</span></h1>
+  </section>
+
+  <section class="container hero">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="pill-orange">All Session Outputs</span>
+        <h2><span class="l1">Every app we build,</span><span class="l2">session by session.</span></h2>
+        <p class="lead">24 sessions, 7 real apps and 2 live launches. See what students build in every session, with its screenshot and project files.</p>
+        <div class="btns">
+          <a class="btn btn-primary" href="#semester-1">Semester 1 · FlutterFlow</a>
+          <a class="btn btn-outline" href="#semester-2">Semester 2 · Dart &amp; Flutter</a>
+        </div>
+        <div class="meta">2 semesters · 24 sessions · 7 apps · Project-Based</div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone"><img src="assets/hero-phone.png" alt="FitMe app shown on a phone mockup"></div>
+        <div class="final-badge"><small>Final Projects</small><b>FitMe · Food Ordering App</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="projects" style="background:#E6F3FA">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">The Projects</div>
+        <h2><span>Seven apps.</span><span>Built one session at a time.</span></h2>
+        <p>Each project grows over several sessions. Click a project to jump to its sessions.</p>
+      </div>
+      <div class="proj-grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <section class="band" id="semester-1">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">Semester 1 · Module 1 : App Discovery</div>
+        <h2><span>Build lifestyle apps</span><span style="color:var(--primary)">with FlutterFlow.</span></h2>
+        <p>From a first widget to FitMe, a live tracker app deployed to real phones.</p>
+      </div>
+      <div class="timeline"><div class="tl-items" id="tl1"></div></div>
+    </div>
+  </section>
+
+  <section class="band alt" id="semester-2" style="background:#F7FAFF">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">Semester 2 · Module 2 : App Pro</div>
+        <h2><span>Level up from no-code</span><span style="color:var(--primary)">to pro-code.</span></h2>
+        <p>Dart, OOP and native Flutter in FlutLab, ending with a full food ordering app and a portfolio website.</p>
+      </div>
+      <div class="timeline"><div class="tl-items" id="tl2"></div></div>
+    </div>
+  </section>
+
+  <section class="band" id="graduation">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow">The Graduation Projects</div>
+        <h2><span>Two real apps,</span><span>live on real phones.</span></h2>
+        <p>Each semester ends with a deployed app and a pitch to teachers and parents.</p>
+      </div>
+      <div class="caps" id="caps"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container row">
+      <img src="assets/ischool-logo.png" alt="iSchool">
+      <span>Grade 8 · App Creators</span>
+    </div>
+  </footer>
+</main>
+
+<dialog id="lb" aria-label="Output preview">
+  <div class="lb">
+    <div class="lb-top">
+      <span class="lb-count" id="lbCount"></span>
+      <button class="lb-btn" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="lb-mid">
+      <button class="lb-btn" id="lbPrev" aria-label="Previous output"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <figure class="lb-stage"><img id="lbImg" alt=""></figure>
+      <button class="lb-btn" id="lbNext" aria-label="Next output"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="lb-info">
+      <div class="txt"><span id="lbTag"></span><h3 id="lbTitle"></h3><p id="lbSub"></p></div>
+      <div id="lbLinks"></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+const PROJECTS = {
+  social:  {name:"The Social App",        color:"#0075f0", bg:"#E6F3FA", sem:1, desc:"A social feed app, students' first FlutterFlow build."},
+  lms:     {name:"School LMS",            color:"#6b4ce6", bg:"#EFEDFF", sem:1, desc:"A learning platform with courses, subtopics, pages and a NavBar."},
+  weather: {name:"Weather App",           color:"#0598d8", bg:"#E2F8FF", sem:1, desc:"Live weather from a REST API, JSON parsing and conditionals."},
+  fitme:   {name:"FitMe",                 color:"#f7791a", bg:"#FFEFE3", sem:1, desc:"A fitness tracker with Firebase login, deployed live on AppHost."},
+  pocket:  {name:"Pocket Assistant",      color:"#00a77e", bg:"#E5F4E4", sem:2, desc:"Dart mini-tools: greetings, converters, trackers and counters."},
+  bank:    {name:"Banking App",           color:"#0057c2", bg:"#E7F1FB", sem:2, desc:"OOP in Dart, then native Flutter pages installed on a phone."},
+  food:    {name:"Food Ordering App",     color:"#e5484d", bg:"#FBEBEB", sem:2, desc:"Auth, restaurant lists, a shopping cart and a deployed APK."},
+  pres:    {name:"Showcase Presentation", color:"#c99400", bg:"#FCF9E5", sem:1, desc:""},
+  folio:   {name:"Portfolio Website",     color:"#c99400", bg:"#FCF9E5", sem:2, desc:""},
+};
+const FF = "https://app.flutterflow.io/project/";
+const GD = id => `https://drive.google.com/file/d/${id}/view?usp=drive_link`;
+const LMS_FULL = FF+"l-m-s-galaxyofknowledge-nk1otp", WX_FULL = FF+"weatherappai-i5l1nl", FIT_FULL = FF+"fitness-tracker-v2-full-project-ccmt2u";
+const PA_FULL = GD("1WfhUVIcHKYO4KCps1BCAOiegty6FvyNn"), BANK_FULL = GD("1HD-nHhFBSrXtQhuqz6E38v7NXAvcPsUT"), FOOD_FULL = GD("1vPV_o5USHamTy0PoRj9z2UW5xmTpjVwf");
+
+// links: [label, url, kind] kind: "main" (final/full), "t" (teacher only)
+const SESSIONS = [
+ {sem:1,l:1, p:"social", title:"Getting Started", img:"g8-s1-l01-output.png",
+  out:"The Social App: a single-page social feed, students' first FlutterFlow project.",
+  links:[["Lesson project",FF+"session1-3pdyi6","main t"]]},
+ {sem:1,l:2, p:"lms", title:"Hello Flutter", img:"g8-s1-l02-output.png",
+  out:"School LMS Part 1: the home page with a Continue Learning list.",
+  links:[["Student starter",FF+"school-l-m-s-student-starter-gobq8f"],["Lesson version",FF+"school-l-m-s-part1-s6y6qx"],["Full project",LMS_FULL,"main"]]},
+ {sem:1,l:3, p:"lms", title:"Widget Tree", img:"g8-s1-l03-output.png",
+  out:"School LMS Part 2: the home page styled with Containers, padding and buttons.",
+  links:[["Student starter",FF+"school-l-m-s-part1-s6y6qx"],["Lesson version",FF+"school-l-m-s-part2-tvgyk2"],["Full project",LMS_FULL,"main"]]},
+ {sem:1,l:4, p:"lms", title:"Pages and Actions", img:"g8-s1-l04-output.png",
+  out:"School LMS Part 3: Home → Subject → Subtopic pages linked by navigation actions.",
+  links:[["Navigation demo",FF+"test-22fznt","t"],["Student starter",FF+"school-l-m-s-part2-tvgyk2"],["Lesson version",FF+"school-l-m-s-part3-2cigfp"],["Full project",LMS_FULL,"main"]]},
+ {sem:1,l:5, p:"lms", title:"Use Case Diagram", img:"g8-s1-l05-output.png",
+  out:"School LMS final: back buttons on every AppBar and a NavBar for Home and Account.",
+  links:[["Use case diagram","https://lucid.app/lucidchart/face33fd-3453-46ec-a534-862d65a62048/edit?viewport_loc=-419%2C73%2C2290%2C1135%2C.Q4MUjXso07N&invitationId=inv_4f66ae59-f79f-4efb-8278-e25e095caefb","t"],["Student starter",FF+"school-l-m-s-part3-2cigfp"],["Full project",LMS_FULL,"main"]]},
+ {sem:1,l:6, p:"weather", title:"Unlocking the Power of APIs", img:"g8-s1-l06-output.png",
+  out:"Weather App Part 1: a working API call that returns live weather as JSON.",
+  links:[["APIs demo",FF+"apis-0jvhe1","t"],["Student starter",FF+"weather-app-student-started-r49pmr"],["Lesson version",FF+"weather-app-v2-part1-q8kbbx"],["Full project",WX_FULL,"main"],["Teacher guide","https://www.notion.so/ischooltech/Lesson-06-G8S1-Unlocking-the-Power-of-APIs-1b342f1e05cd8036ade0ff953ce722f6","t"]]},
+ {sem:1,l:7, p:"weather", title:"APIs, Part 2", img:"g8-s1-l07-output.png",
+  out:"Weather App Part 2: city, temperature, hourly and 7-day forecast bound to API data.",
+  links:[["Variables demo",FF+"variables-ve7jnr","t"],["Student starter",FF+"weather-app-v2-part1-q8kbbx"],["Lesson version",FF+"weather-app-v2-part2-q4x6pw"],["Full project",WX_FULL,"main"]]},
+ {sem:1,l:8, p:"weather", title:"APIs, Part 3", img:"g8-s1-l08-output.png",
+  out:"Weather App Part 3: error handling for invalid cities plus humidity, wind, visibility and pressure cards.",
+  links:[["Conditionals template",FF+"t-conditionals-5egpi9"],["Conditionals complete",FF+"conditionals-mzm7q5","t"],["Student starter",FF+"weather-app-v2-part2-q4x6pw"],["Full project",WX_FULL,"main"],["Teacher guide","https://www.notion.so/ischooltech/Lesson-08-G8S1-Unlocking-the-Power-of-APIs-Part-3-1bb42f1e05cd8032b8f8d10ffc92540f","t"]]},
+ {sem:1,l:9, p:"fitme", title:"Introduction to Firebase Authentication", img:"g8-s1-l09-output.png",
+  out:"FitMe Part 1: onboarding page with sign up and login through Firebase.",
+  links:[["Student starter",FF+"fitness-tracker-v2-student-starter-project-9dx85p"],["Lesson version",FF+"fitness-tracker-v2-part1-mudu79"],["Assets",GD("1Sdje0ZXNTqWueTRT8bbmhwOppavFPflO")]]},
+ {sem:1,l:10, p:"fitme", title:"The Final Project", img:"g8-s1-l10-output.gif",
+  out:"FitMe Part 2: home page metrics, workout types and the Upper Body workout page.",
+  links:[["Lesson version",FF+"fitness-tracker-v2-part2-hj2c3l"],["Full project",FIT_FULL,"main"],["Galaxy activity",FF+"galaxy-of-knowledge-part-2-c5vkh4","t"]]},
+ {sem:1,l:11, p:"fitme", title:"The Final Project, Part 2", img:"g8-s1-l11-output.gif", final:true,
+  out:"FitMe final: workout details, built as an APK and deployed live on AppHost.",
+  links:[["Live preview","https://app.flutterflow.io/share/fit-me-preview-full-version-dlz44s","main"],["Deployed app","https://appho.st/d/3kYmD5fZ"],["Student starter",FF+"fitness-tracker-v2-part2-hj2c3l"],["Full project",FIT_FULL],["AI Shopping UI",FF+"shopping-app-using-a-i-ebn0gn"]]},
+ {sem:1,l:12, p:"pres", title:"Presentation and Celebrate", img:"g8-s1-l12-output.png",
+  out:"A “My Journey at iSchool” Canva presentation showcasing the three apps, plus a LinkedIn profile.",
+  links:[["Canva","https://www.canva.com/"]]},
+
+ {sem:2,l:1, p:"pocket", title:"Dart Basics", img:"g8-s2-l01-output.png",
+  out:"Pocket Assistant Part 1: greeting message and Fahrenheit-to-Celsius converter, plus a calculator.",
+  links:[["Student starter",GD("1yfj8ie9UtSXTqX9wlIjhSWKZgmqd0T3O")],["Lesson version",GD("19eD6TdyfQchfhSjuiIGSi05g9FW3WnDP")],["Full project",PA_FULL,"main"],["Calculator",GD("1bZYz-YZPBetwd8Vh4lrA9fpaPCx6QEpx")]]},
+ {sem:2,l:2, p:"pocket", title:"Hello Dart", img:"g8-s2-l02-output.png",
+  out:"Pocket Assistant Part 2: Weather Vibe check with conditionals and a Shopping Expense Tracker with lists and loops.",
+  links:[["Student starter",GD("19eD6TdyfQchfhSjuiIGSi05g9FW3WnDP")],["Lesson version",GD("1y1oyISwgfDpyV0EbHVeAHJLW5jNVslAF")],["Full project",PA_FULL,"main"]]},
+ {sem:2,l:3, p:"pocket", title:"Functions in Dart", img:"g8-s2-l03-output.png",
+  out:"Pocket Assistant Part 3: the Sticker Counter written with functions, plus a supermarket budget check.",
+  links:[["Student starter",GD("19eD6TdyfQchfhSjuiIGSi05g9FW3WnDP")],["Lesson version",GD("1y1oyISwgfDpyV0EbHVeAHJLW5jNVslAF")],["Full project",PA_FULL,"main"],["Supermarket task",GD("1b8xVGBn9Pez69NVaJUkmvo9sOuucAgpQ")],["Task solution",GD("1gXXCySBtL37s97ZrX7sm7l8SnN6hBB7V"),"t"]]},
+ {sem:2,l:4, p:"bank", title:"Object Oriented Programming", img:"g8-s2-l04-output.png",
+  out:"Banking App Part 1: a BankAccount class with deposit, withdraw and a live balance.",
+  links:[["Class demo","https://ideone.com/TvynHq"],["Student starter",GD("19Ua8qS78eumF2JjSPsCFmu8k2qG8jZdY")],["Lesson version",GD("1VgAy08AMedzwfCFdl9URvlS4gcagM3zK")],["Full project",BANK_FULL,"main"]]},
+ {sem:2,l:5, p:"bank", title:"Hello Flutter", img:"g8-s2-l05-output.png",
+  out:"Banking App onboarding page in Flutter: bank name, welcome message and a button to Home.",
+  links:[["Explanation project",GD("1Il_-oWYB75BGCHVo3LJvJ4JGDSVr5o5I")],["Student starter",GD("1VgAy08AMedzwfCFdl9URvlS4gcagM3zK")],["Lesson version",GD("1gdGhJ0eqdvt5SbtDyL05JUav-XamliHE")],["Full project",BANK_FULL,"main"]]},
+ {sem:2,l:6, p:"bank", title:"Flutter UI", img:"g8-s2-l06-output.png",
+  out:"Banking App Profile page and Home AppBar, installed on a phone with the FlutLab Installer.",
+  links:[["Student starter",GD("1gdGhJ0eqdvt5SbtDyL05JUav-XamliHE")],["Full project",BANK_FULL,"main"],["FlutLab Installer",GD("1pwQ9f-zR62OvIZK3nbtK41N03_j5io6T")],["Installer guide","https://flutlab.io/docs/how-to-use-flutlab-installer"]]},
+ {sem:2,l:7, p:"food", title:"Stateful Widgets", img:"g8-s2-l07-output.gif",
+  out:"Food Ordering App sign-up page: a stateful form with a Sign Up button and a Login link.",
+  links:[["Student starter",GD("1ikILxP81rTBiempo_Gv4XGVznThJG2BM")],["Lesson version",GD("18X_rsdqI9L-EzD3iLzSZjyaOsOioEugt")],["Full project",FOOD_FULL,"main"]]},
+ {sem:2,l:8, p:"food", title:"Asynchronous Programming", img:"g8-s2-l08-output.png",
+  out:"Food Ordering App with Firebase authentication and a home page that greets the user by name.",
+  links:[["Student starter",GD("18X_rsdqI9L-EzD3iLzSZjyaOsOioEugt")],["Lesson version",GD("1W7MzdjC7PCjSG88BsOnbzNvwJPKipud_")],["Full project",FOOD_FULL,"main"]]},
+ {sem:2,l:9, p:"food", title:"Maps in Dart", img:"g8-s2-l09-output.gif",
+  out:"Food Ordering App home page Part 2: category and restaurant scrolling lists driven by maps.",
+  links:[["Student starter",GD("1W7MzdjC7PCjSG88BsOnbzNvwJPKipud_")],["Lesson version",GD("1VXBRtXnGqMmNSJzZbctWvakwUJblU1oT")],["Full project",FOOD_FULL,"main"]]},
+ {sem:2,l:10, p:"food", title:"Shopping Cart, Part 1", img:"g8-s2-l10-output.gif",
+  out:"Restaurant and Cart models, a restaurant page and redesigned restaurant cards.",
+  links:[["Student starter",GD("1VXBRtXnGqMmNSJzZbctWvakwUJblU1oT")],["Lesson version",GD("1OtdipRdXKb13wOq9KnxpG50AxVY2w4fc")],["Full project",FOOD_FULL,"main"]]},
+ {sem:2,l:11, p:"food", title:"Shopping Cart, Part 2", img:"g8-s2-l11-output.gif", final:true,
+  out:"Final Food Ordering App: cart page, AI-generated Clear Cart button, APK built in FlutLab and hosted on AppHost.",
+  links:[["Student starter",GD("1OtdipRdXKb13wOq9KnxpG50AxVY2w4fc")],["Full project",FOOD_FULL,"main"],["Build file",GD("1pJ27pVSvE3UOMivVYLUchi1Gs9GbAw75")],["AppHost","https://appho.st"]]},
+ {sem:2,l:12, p:"folio", title:"Let's Make a Portfolio", img:"g8-s2-l12-output.png",
+  out:"A portfolio website published from Canva, with the final projects shared on LinkedIn.",
+  links:[["Canva","https://www.canva.com/"]]},
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const range = k => { const ls = SESSIONS.filter(s => s.p === k).map(s => s.l); return ls.length > 1 ? `Lessons ${ls[0]}–${ls.at(-1)}` : `Lesson ${ls[0]}`; };
+const tag = p => `<span class="ptag" style="background:${p.bg};color:${p.color}"><span style="width:8px;height:8px;border-radius:50%;background:${p.color}"></span>${esc(p.name)}</span>`;
+const linkHtml = links => `<div class="links">${links.filter(([, , k = ""]) => !k.split(" ").includes("t")).map(([label, url, kind = ""]) =>
+  `<a href="${esc(url)}" target="_blank" rel="noopener" class="${kind.includes("main") ? "main" : ""}">${esc(label)}${kind.includes("t") ? ' <span class="lock" title="Teacher only">🔒</span>' : ""}</a>`).join("")}</div>`;
+const ZOOM = `<span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>`;
+const shot = (s, cls = "shot") => `<button class="${cls}" data-idx="${SESSIONS.indexOf(s)}" aria-label="Enlarge lesson ${s.l} output"><img src="assets/outputs/${s.img}" alt="Lesson ${s.l} output: ${esc(PROJECTS[s.p].name)}" loading="lazy">${ZOOM}</button>`;
+
+// projects grid: the seven apps, showing each one's final output
+document.getElementById("projGrid").innerHTML = ["social","lms","weather","fitme","pocket","bank","food"].map(k => {
+  const p = PROJECTS[k], last = SESSIONS.filter(s => s.p === k).at(-1);
+  return `<a class="proj" href="#s${last.sem}-${k}">
+    <div class="media" style="background:${p.bg}"><img src="assets/outputs/${last.img}" alt="${esc(p.name)} final output" loading="lazy"></div>
+    <div class="txt"><h3>${esc(p.name)}</h3><p>${esc(p.desc)}</p>
+    <span class="when ${p.sem === 2 ? "s2" : ""}">Semester ${p.sem} · ${range(k)}</span></div></a>`;
+}).join("");
+
+// timelines
+function scard(s) {
+  return `<div class="scard">${shot(s)}<div class="info">${tag(PROJECTS[s.p])}<h3>${esc(s.title)}</h3><p>${esc(s.out)}</p>${linkHtml(s.links)}</div></div>`;
+}
+function timeline(sem) {
+  let html = "", prev = null, i = 0;
+  for (const s of SESSIONS.filter(x => x.sem === sem)) {
+    if (s.p !== prev) {
+      const p = PROJECTS[s.p];
+      html += `<div class="project-divider" id="s${sem}-${s.p}"><span><i style="background:${p.color}"></i>${esc(p.name)} · ${range(s.p)}</span></div>`;
+      prev = s.p;
+    }
+    const label = `<span class="lbl">Lesson ${s.l}: ${esc(s.title)}</span>`;
+    const left = i % 2 === 0;
+    html += `<div class="tl ${s.final ? "final" : ""}" id="s${sem}-l${s.l}">
+      <div class="m-head"><span class="dot"></span>${label}</div>
+      <div class="card-slot mob-only">${scard(s)}</div>
+      <div class="d-row">
+        ${left ? `<div>${scard(s)}</div>` : `<div class="side-lbl left">${label}</div>`}
+        <div class="center"><span class="dot"></span></div>
+        ${left ? `<div class="side-lbl right">${label}</div>` : `<div>${scard(s)}</div>`}
+      </div></div>`;
+    i++;
+  }
+  return html;
+}
+document.getElementById("tl1").innerHTML = timeline(1);
+document.getElementById("tl2").innerHTML = timeline(2);
+
+// graduation projects
+const fit = SESSIONS.find(s => s.sem === 1 && s.l === 11), fit10 = SESSIONS.find(s => s.sem === 1 && s.l === 10);
+const food = SESSIONS.find(s => s.sem === 2 && s.l === 11), food9 = SESSIONS.find(s => s.sem === 2 && s.l === 9);
+document.getElementById("caps").innerHTML = `
+  <div class="cap blue">
+    <div class="ey">Semester 1 · FlutterFlow</div>
+    <h3>FitMe, a live tracker app.</h3>
+    <p>Firebase login, dashboards and workout pages, built as an APK and deployed on AppHost, then pitched with a Canva presentation.</p>
+    <div class="imgs">${shot(fit10, "")}${shot(fit, "")}</div>
+    ${linkHtml(fit.links.slice(0, 2).concat([["Full project", FIT_FULL]]))}
+  </div>
+  <div class="cap orange">
+    <div class="ey">Semester 2 · Dart &amp; Flutter</div>
+    <h3>A full food ordering app.</h3>
+    <p>Firebase auth, restaurant lists, a real cart and an AI-built Clear Cart button, shipped as an APK, plus a Canva portfolio website.</p>
+    <div class="imgs">${shot(food9, "")}${shot(food, "")}</div>
+    ${linkHtml([["Full project", FOOD_FULL, "main"], ["Build file", "https://drive.google.com/file/d/1pJ27pVSvE3UOMivVYLUchi1Gs9GbAw75/view?usp=drive_link"], ["AppHost", "https://appho.st"]])}
+  </div>`;
+
+// lightbox
+const lb = document.getElementById("lb"); let cur = 0;
+function show(i) {
+  cur = (i + SESSIONS.length) % SESSIONS.length;
+  const s = SESSIONS[cur], p = PROJECTS[s.p], img = document.getElementById("lbImg");
+  img.src = "assets/outputs/" + s.img; img.alt = `Lesson ${s.l} output: ${p.name}`;
+  img.style.animation = "none"; img.offsetWidth; img.style.animation = "";
+  document.getElementById("lbCount").textContent = `Semester ${s.sem} · Lesson ${s.l}  —  ${cur + 1} / ${SESSIONS.length}`;
+  document.getElementById("lbTag").innerHTML = tag(p);
+  document.getElementById("lbTitle").textContent = s.title;
+  document.getElementById("lbSub").textContent = s.out;
+  document.getElementById("lbLinks").innerHTML = linkHtml(s.links);
+}
+let tx = null;
+lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); tx = null; });
+document.addEventListener("click", e => { const b = e.target.closest("button[data-idx]"); if (b) { show(+b.dataset.idx); lb.showModal(); } });
+document.getElementById("lbPrev").onclick = () => show(cur - 1);
+document.getElementById("lbNext").onclick = () => show(cur + 1);
+document.getElementById("lbClose").onclick = () => lb.close();
+lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-stage") || e.target.classList.contains("lb-mid")) lb.close(); });
+document.addEventListener("keydown", e => { if (!lb.open) return; if (e.key === "ArrowRight") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+</script>
+</body>
+</html>
